@@ -7,13 +7,15 @@ This project provides this icon-set for Dart.
 ##What's cool##
 Googles original version comes "only" with black or white SVGs.  
 **material_icons** allows you to **theme** your icons!!!  
-Tested with Chrome, Safari, FF.
+Tested with Chrome, Safari, FF + IE.
+IE - needs the no-svg class (see below)  
 
 ![Screenshot][screenshot]
 
 ##Usage##
 * Clone the ["purple"][purple] example
 * Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html" target="_blank">[this]</a> page
+** Use Chrome or Safari for this!
 * Click on icon that you want to include in your project
 * Copy the **_material-icons.scss** section
 * Paste it into your _material-icons.scss
