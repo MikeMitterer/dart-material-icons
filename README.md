@@ -15,7 +15,7 @@ IE - needs the no-svg class (see below)
 ##Usage##
 * Clone the ["purple"][purple] example
 * Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html" target="_blank">[this]</a> page
-** Use Chrome or Safari for this!
+  - Use Chrome or Safari for this!
 * Click on icon that you want to include in your project
 * Copy the **_material-icons.scss** section
 * Paste it into your _material-icons.scss
