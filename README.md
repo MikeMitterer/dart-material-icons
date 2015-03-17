@@ -1,8 +1,13 @@
 # Dart Material SVG Icons
-## Optimized for Dart + SASS
+### Optimized for Dart + SASS###
 
 [Material Design Icons][materialicons] are the official open-source icons featured in the Google Material Design specification.
-This project provides this icon-set for Dart. 
+This project provides this icon-set for Dart.
+ 
+##What's cool##
+Google original version comes "only" with black or white SVG's.
+material_icons allows you to **theme** your icons!!!  
+Tested with Chrome, Safari, FF
 
 ![Screenshot][screenshot]
 
@@ -10,7 +15,7 @@ This project provides this icon-set for Dart.
 * Clone the ["purple"][purple] example
 * Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html" target="_blank">[this]</a> page
 * Click on icon you want to include in your project
-* Copy the *_material-icons.scss* section
+* Copy the **_material-icons.scss** section
 * Past it into your _material-icons.scss
 ```css
 @import 'packages/material_icons/assets/action/svg/production/ic_favorite_24px';
@@ -20,14 +25,14 @@ This project provides this icon-set for Dart.
     background-image: svg-ic_favorite_24px($icon-color);
 }
 ```
-* Copy the *index.html* section
+* Copy the **index.html** section
 * Paste it into your index.html
 ```html
     <div class="bg-ic_favorite_24px svg-size-24 svg-bg"></div>
 ```
 * In main.scss define your icon-color: `$icon-color : #9B30FF;`
-* In web/styles: sassc main.scss main.css
-* and: autoprefixer main.css
+* In web/styles: **sassc main.scss main.css**
+* and: **autoprefixer main.css**
 
 That's it.    
 Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/example/purple/web/index.html" target="_blank">[this]</a> page   
@@ -41,8 +46,8 @@ Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-materia
     <div class="bg-ic_accessibility_48px svg-size-48 svg-bg"></div>
 </body>
 ```
-no-svg - turns off svg and uses png's instead  
-fallback-white | fallback-black | fallback-grey - PNG color to use  
+**no-svg** - turns off svg and uses png's instead  
+**fallback-white** | **fallback-black** | **fallback-grey** - PNG color to use  
 This option can also be specified per div (line 3)    
 
 ## Features and bugs

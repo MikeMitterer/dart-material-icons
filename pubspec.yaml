@@ -1,6 +1,6 @@
 name: material_icons
 description: Google Material icons - optimized for Dart + SASS
-version: 0.0.1
+version: 1.0.0
 
 author: Mike Mitterer <office@mikemitterer.at>
 homepage: https://github.com/MikeMitterer/dart-material-icons
