@@ -8,7 +8,7 @@ This project provides this icon-set for Dart.
 
 ##Usage##
 * Clone the ["purple"][purple] example
-* Open [this](https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html){:target="_blank"} page
+* Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html" target="_blank">[this]</a> page
 * Click on icon you want to include in your project
 * Copy the *_material-icons.scss* section
 * Past it into your _material-icons.scss
@@ -29,9 +29,8 @@ This project provides this icon-set for Dart.
 * In web/styles: sassc main.scss main.css
 * and: autoprefixer main.css
 
-That's it.  
-Your page should look like [this](https://rawgit.com/MikeMitterer/dart-material-icons/master/example/purple/web/index.html){:target="_blank"} 
-
+That's it.    
+Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/example/purple/web/index.html" target="_blank">[this]</a> page   
 
 ###Play with your index.html###
 
