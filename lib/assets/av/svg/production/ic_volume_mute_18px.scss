@@ -1,0 +1,3 @@
+@function svg-ic_volume_mute_18px($fillColor) {
+    @return url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path fill="' + $fillColor + '" d="M5 7v4h3l4 4V3L8 7H5z"/></svg>');
+}

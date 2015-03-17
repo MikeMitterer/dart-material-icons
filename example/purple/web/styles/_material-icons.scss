@@ -1,0 +1,19 @@
+@import 'packages/material_icons/assets/action/svg/production/ic_favorite_24px';
+.bg-ic_favorite_24px {
+    @include svg-background("24");
+    @include svg-fallback("action/svg/production/ic_favorite_24px.svg","action/2x_web/ic_favorite_black_24dp.png","action/2x_web/ic_favorite_white_24dp.png","action/2x_web/ic_favorite_grey600_24dp.png");
+    background-image: svg-ic_favorite_24px($icon-color);
+}
+@import 'packages/material_icons/assets/action/svg/production/ic_account_balance_24px';
+.bg-ic_account_balance_24px {
+    @include svg-background("24");
+    @include svg-fallback("action/svg/production/ic_account_balance_24px.svg","action/2x_web/ic_account_balance_black_24dp.png","action/2x_web/ic_account_balance_white_24dp.png","action/2x_web/ic_account_balance_grey600_24dp.png");
+    background-image: svg-ic_account_balance_24px($icon-color);
+}
+@import 'packages/material_icons/assets/action/svg/production/ic_accessibility_48px';
+.bg-ic_accessibility_48px {
+    @include svg-background("48");
+    @include svg-fallback("action/svg/production/ic_accessibility_48px.svg","action/2x_web/ic_accessibility_black_48dp.png","action/2x_web/ic_accessibility_white_48dp.png","action/2x_web/ic_accessibility_grey600_48dp.png");
+    background-image: svg-ic_accessibility_48px($icon-color);
+}
+
