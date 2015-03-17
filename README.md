@@ -5,18 +5,18 @@
 This project provides this icon-set for Dart.
  
 ##What's cool##
-Google original version comes "only" with black or white SVG's.
-material_icons allows you to **theme** your icons!!!  
-Tested with Chrome, Safari, FF
+Googles original version comes "only" with black or white SVGs.  
+**material_icons** allows you to **theme** your icons!!!  
+Tested with Chrome, Safari, FF.
 
 ![Screenshot][screenshot]
 
 ##Usage##
 * Clone the ["purple"][purple] example
 * Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html" target="_blank">[this]</a> page
-* Click on icon you want to include in your project
+* Click on icon that you want to include in your project
 * Copy the **_material-icons.scss** section
-* Past it into your _material-icons.scss
+* Paste it into your _material-icons.scss
 ```css
 @import 'packages/material_icons/assets/action/svg/production/ic_favorite_24px';
 .bg-ic_favorite_24px {
@@ -48,7 +48,7 @@ Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-materia
 ```
 **no-svg** - turns off svg and uses png's instead  
 **fallback-white** | **fallback-black** | **fallback-grey** - PNG color to use  
-This option can also be specified per div (line 3)    
+This option can also be specified per div (line 3).    
 
 ## Features and bugs
 
@@ -72,7 +72,7 @@ Please file feature requests and bugs at the [issue tracker][tracker].
     governing permissions and limitations under the License.
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me  
-or **star** this repo here on GitHub
+or **star** this repo here on GitHub.
       
 [tracker]: https://github.com/MikeMitterer/dart-material-icons/issues
 [live]: https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html

@@ -5,7 +5,11 @@ version: 1.0.0
 author: Mike Mitterer <office@mikemitterer.at>
 homepage: https://github.com/MikeMitterer/dart-material-icons
 
-#dependencies:
-#  lib_name: any
-#dev_dependencies:
-#  unittest: any
+#environment:
+#  sdk: '>=1.0.0 <2.0.0'
+
+dependencies:
+  browser: any
+
+dev_dependencies:
+  unittest: any
