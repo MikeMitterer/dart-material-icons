@@ -19,11 +19,12 @@ Tested with Chrome, Safari, FF + IE.
 * Copy the **_material-icons.scss** section
 * Paste it into your _material-icons.scss
 ```css
-@import 'packages/material_icons/assets/action/svg/production/ic_favorite_24px';
-.bg-ic_favorite_24px {
-    @include svg-background("24");
-    @include svg-fallback("action/svg/production/ic_favorite_24px.svg","action/2x_web/ic_favorite_black_24dp.png","action/2x_web/ic_favorite_white_24dp.png","action/2x_web/ic_favorite_grey600_24dp.png");
-    background-image: svg-ic_favorite_24px($icon-color);
+@import 'packages/material_icons/sass/action/svg/production/ic_account_box_18px';
+
+.bg-ic_account_box_18px {
+    @include svg-background("18");
+    @include svg-fallback("action/svg/production/ic_account_box_18px.svg","action/2x_web/ic_account_box_black_18dp.png","action/2x_web/ic_account_box_white_18dp.png","action/2x_web/ic_account_box_grey600_18dp.png");
+    background-image: svg-ic_account_box_18px($icon-color);
 }
 ```
 * Copy the **index.html** section
