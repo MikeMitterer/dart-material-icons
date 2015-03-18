@@ -36,7 +36,7 @@ Tested with Chrome, Safari, FF + IE.
 * In web/styles: **sass main.scss main.css -r ../packages/material_icons/sassext/urlencode.rb**
 * and: **autoprefixer main.css**
 
-**Note**
+**Note:**
 You may ask what the hack???? does that mean:  
 -r ../packages/material_icons/sassext/urlencode.rb  
 You are adding a custom ruby-function to sass - here it is urlencode(...).  
