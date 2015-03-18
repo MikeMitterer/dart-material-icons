@@ -320,13 +320,17 @@ prefixhtml() {
     echo "<!doctype html>" >> ${HTMLFILE}
     echo "<html lang="en-US">" >> ${HTMLFILE}
     echo "<head>" >> ${HTMLFILE}
-    echo "<meta charset=\"UTF-8\">" >> ${HTMLFILE}
-    echo "<title></title>" >> ${HTMLFILE}
-    #echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"svg-sample.css\"/>" >> ${HTMLFILE}
-    echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"main.css\"/>" >> ${HTMLFILE}
-    echo "<style>" >> ${HTMLFILE}
-    #echo "    .svgbg:after { content: '-'; }"  >> ${HTMLFILE}
-    echo "</style>" >> ${HTMLFILE}
+    echo "<title>Material Icons</title>" >> ${HTMLFILE}
+    echo "<meta charset=utf-8>" >> ${HTMLFILE}
+    echo "<meta http-equiv=X-UA-Compatible content="IE=edge">" >> ${HTMLFILE}
+    echo "<meta name=description content="Helper to select the right import for material-icons">" >> ${HTMLFILE}
+    echo "<meta name=viewport content="width=device-width, initial-scale=1">" >> ${HTMLFILE}
+    echo "<meta name=mobile-web-app-capable content=yes>" >> ${HTMLFILE}
+    echo "<meta name=apple-mobile-web-app-capable content=yes>" >> ${HTMLFILE}
+    echo "<meta name=apple-mobile-web-app-status-bar-style content=black>" >> ${HTMLFILE}
+    echo "<meta name=apple-mobile-web-app-title content="Material Icons">" >> ${HTMLFILE}
+
+    echo "<link rel="stylesheet" type="text/css" href="main.css"/>" >> ${HTMLFILE}
 
     echo "</head>" >> ${HTMLFILE}
     echo "<body>" >> ${HTMLFILE}
