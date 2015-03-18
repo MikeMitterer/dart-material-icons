@@ -1,7 +1,7 @@
-$icon-color : #9B30FF;
+$icon-color : rgba(#9B30FF,0.5);
 
 // Important - svg-utils must be include right after icon-color!
-@import "packages/material_icons/assets/svg-utils";
+@import "packages/material_icons/sass/svg-utils";
 @import "material-icons";
 
 body {
@@ -17,9 +17,17 @@ body {
 
 .svg-bg {
     box-sizing : border-box;
+    &.svg-size-18 {
+        width: 18px;
+        height: 18px;
+    }
     &.svg-size-24 {
         width: 24px;
         height: 24px;
+    }
+    &.svg-size-36 {
+        width: 36px;
+        height: 36px;
     }
     &.svg-size-48 {
         width: 48px;

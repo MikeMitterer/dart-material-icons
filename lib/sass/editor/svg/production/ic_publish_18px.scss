@@ -1,0 +1,3 @@
+@function svg-ic_publish_18px($fillColor) {
+    @return url('data:image/svg+xml;charset=utf-8,' + urlencode('<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path fill="' + $fillColor + '" d="M3 2v2h12V2H3zm0 9h3v5h6v-5h3L9 5l-6 6z"/></svg>'));
+}

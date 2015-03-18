@@ -44,7 +44,7 @@ then
 fi
 
 DEBUG=false
-ASSETSPATH="../lib/assets"
+DEBUG=true
 
 #------------------------------------------------------------------------------
 # Functions
@@ -67,6 +67,8 @@ sampleFunction() {
 }  
 
 _cleanup() {
+    ASSETSPATH="../lib/assets"
+
     DIRSTOREMOVE=(
     "*/svg/design"
     "svg/design"
@@ -76,14 +78,14 @@ _cleanup() {
     "*/drawable-mdpi"
     "*/drawable-hdpi"
     "*/3x_ios"
-    #"*/2x_web"
+    "*/2x_web"
     "*/2x_ios"
     "*/1x_web"
     "*/1x_ios"
     )
 
     for DIR in ${DIRSTOREMOVE[@]}; do
-        log "Remove ${DIR}..."
+        log "Remove ${ASSETSPATH}/${DIR}..."
         rm -rf "${ASSETSPATH}/${DIR}"
     done
     echo "Unnecessary files remove!"
@@ -96,7 +98,7 @@ generate() {
     _cleanup
 
     FILES=`find . -iname "*px.svg"`
-    for FILE in $FILES; do
+    for FILE in ${FILES}; do
         FILEWITHOUTEXT=${FILE%*.*}
         COLORFILE="${FILEWITHOUTEXT}-${COLORNAME}.svg"
 
@@ -113,17 +115,18 @@ generate() {
 }
 
 gensass() {
-    COLORNAME="white"
-    COLORCODE="#ffffff"
-    MAINSASS="svg-icons.scss"
-    UTILSSASS="svg-utils.scss"
-    SAMPLESASS="svg-sample.scss"
-    SAMPLEHTML="index.html"
-    PATHTOCHECLK="${ASSETSPATH}/alert"
-    PATHTOCHECLK="${ASSETSPATH}"
+    ASSETSPATH="../assets"
+    SRCPATH="${ASSETSPATH}/action"
+    SRCPATH="${ASSETSPATH}"
+    TARGETPATH="../lib/sass"
+
+    SVGICONS="svg-icons.scss"
+    SVGUTILS="svg-utils.scss"
+    SVGSAMPLES="svg-sample.scss"
+    INDEXHTML="index.html"
 
     _cleanup
-    rm -f "${ASSETSPATH}/index.html" "${ASSETSPATH}/main.css" "${ASSETSPATH}/svg-icons.scss" "${ASSETSPATH}/svg-sample.scss"
+    rm -f "${TARGETPATH}/index.html" "${TARGETPATH}/main.css" "${TARGETPATH}/svg-icons.scss" "${TARGETPATH}/svg-sample.scss"
     #rm -f ${MAINSASS}
     #rm -f ${SAMPLESASS}
     #rm -f ${SAMPLEHTML}
@@ -131,21 +134,27 @@ gensass() {
     TMPFILE=".temp-svg.tmp"
 
     # SAMPLE - BASISFARBE
-    echo "@import '${MAINSASS}';" >> "${ASSETSPATH}/${SAMPLESASS}"
-    echo "@import '${UTILSSASS}';" >> "${ASSETSPATH}/${SAMPLESASS}"
-    echo -e "\$icon-color: \%23666666 !default;\n" >> "${ASSETSPATH}/${SAMPLESASS}"
+    echo "@import '${SVGICONS}';" >> "${TARGETPATH}/${SVGSAMPLES}"
+    echo "@import '${SVGUTILS}';" >> "${TARGETPATH}/${SVGSAMPLES}"
+    echo -e "\$icon-color: #666666 !default;\n" >> "${TARGETPATH}/${SVGSAMPLES}"
     #echo -e "\$icon-alpha: 1 !default;\n" >> "${ASSETSPATH}/${SAMPLESASS}"
     #echo -e "\$icon-color-internal: rgba(red(\$icon-color),green(\$icon-color),blue(\$icon-color),\$icon-alpha) !default;\n" >> "${ASSETSPATH}/${SAMPLESASS}"
 
-    prefixhtml "${ASSETSPATH}/${SAMPLEHTML}"
+    prefixhtml "${TARGETPATH}/${INDEXHTML}"
 
-    FILES=`find ${PATHTOCHECLK} -iname "*px.svg"`
+    FILES=`find ${SRCPATH} -iname "*px.svg"`
     for FILE in $FILES; do
-        FILE="`echo ${FILE} | sed s#${ASSETSPATH}/##g`"
+        FILE="`echo ${FILE} | sed s#${TARGETPATH}/##g`"
 
         FILEWITHOUTEXT=${FILE%*.*}
+        FILENAME=`basename ${FILE}`
+        FILEPATH="`echo ${FILE} | sed s/${FILENAME}//`"
         PUREFILENAME=`basename ${FILE%*.*}`
-        SASSFILE=${FILEWITHOUTEXT}.scss
+
+        SASSFILE=${PUREFILENAME}.scss
+        SASSPATH="`echo ${FILEPATH} | sed s#^\.\./assets/##`"
+        SASSPATH="${TARGETPATH}/${SASSPATH}";
+        SASSTOIMPORT="`echo ${FILEWITHOUTEXT} | sed s#^\.\./assets/##`"
 
         PNGFILE="`echo ${FILEWITHOUTEXT} | sed s#/svg/#/2x_web/#g`"
         PNGFILE="`echo ${PNGFILE} | sed s/_18px//g`"
@@ -172,62 +181,85 @@ gensass() {
             SIZE="18"
         fi
 
-        #SIZE="`echo ${PUREFILENAME} | sed s/3d//g`"
-        #SIZE="`echo ${SIZE} | sed s/[^0-9]*//g`"
-
         FALLBACKBLACK="${PNGFILE}_black_${SIZE}dp.png"
         FALLBACKGREY="${PNGFILE}_grey600_${SIZE}dp.png"
         FALLBACKWHITE="${PNGFILE}_white_${SIZE}dp.png"
         FALLBACKSVG="`echo ${FILE} | sed s#^\./##`"
 
-        log ${FILEWITHOUTEXT}
-        log ${PUREFILENAME}
-        log ${PNGFILE}
-        log ${SIZE}
-        log ${FALLBACKBLACK}
-        log ${FALLBACKSVG}
+        FALLBACKBLACK="`echo ${FALLBACKBLACK} | sed s#^\.\./assets/##`"
+        FALLBACKGREY="`echo ${FALLBACKGREY} | sed s#^\.\./assets/##`"
+        FALLBACKWHITE="`echo ${FALLBACKWHITE} | sed s#^\.\./assets/##`"
+        FALLBACKSVG="`echo ${FALLBACKSVG} | sed s#^\.\./assets/##`"
 
-        if [ -f "${FALLBACKBLACK}" ];then
-            log "${FALLBACKBLACK} available..."
+        log "--------------------------------------------------------------"
+        log "Filepath:           ${FILEPATH}"
+        log "File without Ext:   ${FILEWITHOUTEXT}"
+        log "Pure Filename:      ${PUREFILENAME}"
+        log "SASSFile:           ${SASSFILE}"
+        log "SASSPath:           ${SASSPATH}"
+        log "SassToImport:       ${SASSTOIMPORT}"
+        log "PNG-File:           ${PNGFILE}"
+        log "Size:               ${SIZE}"
+        log "SrcPath:            ${SRCPATH}"
+        log "File:               ${FILE}"
+        log "FallbackBlack       ${FALLBACKBLACK}"
+        log "FallbackGrey        ${FALLBACKGREY}"
+        log "FallbackWhite       ${FALLBACKWHITE}"
+        log "FallbackSVG         ${FALLBACKSVG}"
+        log "--------------------------------------------------------------\n"
+
+        if [ -f "../${FALLBACKBLACK}" ];then
+            log "FallbackBlack: ${FALLBACKBLACK} available..."
         fi
-        if [ -f "${FALLBACKGREY}" ];then
-            log "${FALLBACKGREY} available..."
+        if [ -f "../${FALLBACKGREY}" ];then
+            log "FallbackGrey: ${FALLBACKGREY} available..."
         fi
-        if [ -f "${FALLBACKWHITE}" ];then
-            log "${FALLBACKWHITE} available..."
+        if [ -f "../${FALLBACKWHITE}" ];then
+            log "FallbackWhite: ${FALLBACKWHITE} available..."
+        fi
+        if [ -f "../${FALLBACKSVG}" ];then
+            log "FallbackSVG: ${FALLBACKSVG} available..."
+        fi
+        log "--------------------------------------------------------------\n"
+
+        if [ ! -d "${SASSPATH}" ]; then
+            mkdir -p ${SASSPATH}
         fi
 
-
-        if [ -f "${ASSETSPATH}/${SASSFILE}" ];then
-            rm -f "${ASSETSPATH}/${SASSFILE}"
+        if [ -f "${SASSPATH}/${SASSFILE}" ];then
+            rm -f "${SASSPATH}/${SASSFILE}"
             log "${SASSFILE} deleted.."
         fi
 
-        echo "   Preparing: ${SASSFILE}, size: ${SIZE}..."
+        echo "Preparing: ${SASSFILE}, size: ${SIZE}..."
         rm -f ${TMPFILE}
 
-        sed "s/<path d=/<path fill=\"\' + \$fillColor + \'\" d=/" "${ASSETSPATH}/${FILE}" > ${TMPFILE}
+        sed "s/<path d=/<path fill=\"\' + \$fillColor + \'\" d=/" "${FILE}" > ${TMPFILE}
 
-        log "${SASSFILE} created!"
+        log "Sassfile: ${SASSFILE} created!"
 
-        echo "@function svg-${PUREFILENAME}(\$fillColor) {" > "${ASSETSPATH}/${SASSFILE}"
-        #echo "       \$temp: str-replace(\$fillColor,\"#\",\"%23\");" >> "${SASSFILE}"
-        echo -n "    @return url('data:image/svg+xml," >> "${ASSETSPATH}/${SASSFILE}"
-        tr -d "\n" < ${TMPFILE} >> "${ASSETSPATH}/${SASSFILE}"
-        echo -n "');" >> "${ASSETSPATH}/${SASSFILE}"
-        echo -e "\n}" >> "${ASSETSPATH}/${SASSFILE}"
+        echo "@function svg-${PUREFILENAME}(\$fillColor) {" > "${SASSPATH}/${SASSFILE}"
+        # BASE64
+        #echo -n "    @return url('data:image/svg+xml;charset=utf-8;base64,' + base64Encode('" >> "${SASSPATH}/${SASSFILE}"
+
+        # URLENCODE
+        echo -n "    @return url('data:image/svg+xml;charset=utf-8,' + urlencode('" >> "${SASSPATH}/${SASSFILE}"
+            tr -d "\n" < ${TMPFILE} >> "${SASSPATH}/${SASSFILE}"
+        echo -n "'));" >> "${SASSPATH}/${SASSFILE}"
+
+        echo -e "\n}" >> "${SASSPATH}/${SASSFILE}"
 
         # SASS mit allen IMPORTS
-        echo "@import '${FILEWITHOUTEXT}';" >> "${ASSETSPATH}/${MAINSASS}"
+        echo "@import '${SASSTOIMPORT}';" >> "${TARGETPATH}/${SVGICONS}"
 
         # SAMPLE - definiert HGs
-        echo ".bg-${PUREFILENAME} {" >> "${ASSETSPATH}/${SAMPLESASS}"
-        echo "     @include svg-background(\"${SIZE}px\");" >> "${ASSETSPATH}/${SAMPLESASS}"
+        echo ".bg-${PUREFILENAME} {" >> "${TARGETPATH}/${SVGSAMPLES}"
+        echo "     @include svg-background(\"${SIZE}px\");" >> "${TARGETPATH}/${SVGSAMPLES}"
         #echo "     background-repeat: no-repeat;" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo "     background-size: 100% 100%;" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo "     background-size: contain;" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo "     background-position: 50% 50%;" >> "${ASSETSPATH}/${SAMPLESASS}"
-        echo "     @include svg-fallback(\"${FALLBACKSVG}\",\"${FALLBACKBLACK}\",\"${FALLBACKWHITE}\",\"${FALLBACKGREY}\");" >> "${ASSETSPATH}/${SAMPLESASS}"
+        echo "     @include svg-fallback(\"${FALLBACKSVG}\",\"${FALLBACKBLACK}\",\"${FALLBACKWHITE}\",\"${FALLBACKGREY}\");" >> "${TARGETPATH}/${SVGSAMPLES}"
 
         #echo "     .no-svg & {" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo "         &.fallback-black {" >> "${ASSETSPATH}/${SAMPLESASS}"
@@ -245,38 +277,41 @@ gensass() {
         #echo "            background-image: url(${FALLBACKSVG});" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo -e "     }\n" >> "${ASSETSPATH}/${SAMPLESASS}"
 
-        echo "     background-image: svg-${PUREFILENAME}(\$icon-color);" >> "${ASSETSPATH}/${SAMPLESASS}"
+        echo "     background-image: svg-${PUREFILENAME}(\$icon-color);" >> "${TARGETPATH}/${SVGSAMPLES}"
         #echo "     background-image: svg-${PUREFILENAME}(rgba(red(\$icon-color),green(\$icon-color),blue(\$icon-color),\$icon-alpha));" >> "${ASSETSPATH}/${SAMPLESASS}"
-        echo -e "}\n" >> "${ASSETSPATH}/${SAMPLESASS}"
+        echo -e "}\n" >> "${TARGETPATH}/${SVGSAMPLES}"
 
         #echo "      @-moz-document url-prefix() { .bg-${PUREFILENAME} {" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo "            background-image: url(${FALLBACKSVG});" >> "${ASSETSPATH}/${SAMPLESASS}"
         #echo -e "     }}\n" >> "${ASSETSPATH}/${SAMPLESASS}"
 
 
-        echo "    <div class=\"svgbg\">" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "        <div class=\"bg-${PUREFILENAME} svg-size-${SIZE} svg-bg onclick-menu\" tabindex=\"0\">" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "            <div class=\"onclick-menu-content\">"  >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "              <div class=\"filename\">_material-icons.scss:</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                <div class=\"import\">@import 'packages/material_icons/assets/${FILEWITHOUTEXT}';</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                  <div class=\"cssclass\">.bg-${PUREFILENAME} {</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                     <div class=\"props\">@include svg-background(\"${SIZE}\");</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                     <div class=\"props\">@include svg-fallback(\"${FALLBACKSVG}\",\"${FALLBACKBLACK}\",\"${FALLBACKWHITE}\",\"${FALLBACKGREY}\");</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                     <div class=\"props\">background-image: svg-${PUREFILENAME}(\$icon-color);</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                  <div class=\"close-cssclass\">}</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "              <br>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "              <div class=\"filename\">index.html:</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "                <div class=\"html\">&lt;div class=&quot;bg-${PUREFILENAME} svg-size-${SIZE} svg-bg&quot;&gt;&lt;/div&gt;</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "            </div>"  >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "        </div>"  >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "        <div class=\"name\">${PUREFILENAME}</div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
-        echo "    </div>" >> "${ASSETSPATH}/${SAMPLEHTML}"
+        echo "    <div class=\"svgbg\">" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "        <div class=\"bg-${PUREFILENAME} svg-size-${SIZE} svg-bg onclick-menu\" tabindex=\"0\">" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "            <div class=\"onclick-menu-content\">"  >> "${TARGETPATH}/${INDEXHTML}"
+        echo "              <div class=\"filename\">_material-icons.scss:</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                <div class=\"import\">@import 'packages/material_icons/sass/${SASSTOIMPORT}';</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                  <div class=\"cssclass\">.bg-${PUREFILENAME} {</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                     <div class=\"props\">@include svg-background(\"${SIZE}\");</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                     <div class=\"props\">@include svg-fallback(\"${FALLBACKSVG}\",\"${FALLBACKBLACK}\",\"${FALLBACKWHITE}\",\"${FALLBACKGREY}\");</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                     <div class=\"props\">background-image: svg-${PUREFILENAME}(\$icon-color);</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                  <div class=\"close-cssclass\">}</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "              <br>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "              <div class=\"filename\">index.html:</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "                <div class=\"html\">&lt;div class=&quot;bg-${PUREFILENAME} svg-size-${SIZE} svg-bg&quot;&gt;&lt;/div&gt;</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "            </div>"  >> "${TARGETPATH}/${INDEXHTML}"
+        echo "        </div>"  >> "${TARGETPATH}/${INDEXHTML}"
+        echo "        <div class=\"name\">${PUREFILENAME}</div>" >> "${TARGETPATH}/${INDEXHTML}"
+        echo "    </div>" >> "${TARGETPATH}/${INDEXHTML}"
     done
-    postfixhtml "${ASSETSPATH}/${SAMPLEHTML}"
+    postfixhtml "${TARGETPATH}/${INDEXHTML}"
     rm -f ${TMPFILE}
 
-    sassc "${ASSETSPATH}/main.scss" "${ASSETSPATH}/main.css" && autoprefixer "${ASSETSPATH}/main.css"
+    #sassc "${ASSETSPATH}/main.scss" "${ASSETSPATH}/main.css" && autoprefixer "${ASSETSPATH}/main.css"
+    sass "${TARGETPATH}/main.scss" "${TARGETPATH}/main.css" -r "../lib/sassext/urlencode.rb" && autoprefixer "${TARGETPATH}/main.css"
+
     echo -e "\nmain.css generated, you are ready to go!"
+
 }
 
 prefixhtml() {
@@ -307,7 +342,7 @@ log() {
     STRINGTOLOG=$1
 
     if [ "${DEBUG}" = true ] ; then
-        echo ${STRINGTOLOG}
+        echo -e ${STRINGTOLOG}
     fi
 }
 

@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+$icon-color: rgba(#00ff87,0.5);
+$click-menu-background-color: darken(#00ff87,20%);
+$click-menu-color: white;
+
+$page-background-color: #36805D;
+
+$icon-package-prefix: "";
+
+@import "_sass/click-menu";
+@import "svg-utils";
+@import "svg-sample";
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: $page-background-color;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; // ⇾
+    align-content: space-between; // ||
+    align-items: flex-start; // ↓
+
+}
+.svgbg {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start; // ↓
+    align-content: space-between; // =
+    align-items: center; // ⇾
+
+    width: 220px;
+    margin: 10px;
+    overflow: visible;
+
+    > div:first-child {
+        width: 48px;
+        height: 48px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        padding: 0;
+        box-sizing: border-box;
+    }
+    > .name {
+        font-size: 12px;
+    }
+}
+
+

@@ -33,8 +33,14 @@ IE - needs the no-svg class (see below)
     <div class="bg-ic_favorite_24px svg-size-24 svg-bg"></div>
 ```
 * In main.scss define your icon-color: `$icon-color : #9B30FF;`
-* In web/styles: **sassc main.scss main.css**
+* In web/styles: **sass main.scss main.css -r ../packages/material_icons/sassext/urlencode.rb**
 * and: **autoprefixer main.css**
+
+**Note**
+You may ask what the hack???? does that mean:  
+-r ../packages/material_icons/sassext/urlencode.rb  
+You are adding a custom ruby-function to sass - here it is urlencode(...).  
+The inline SVG get urlencoded and makes IE happy.  
 
 That's it.    
 Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/example/purple/web/index.html" target="_blank">[this]</a> page   

@@ -1,0 +1,36 @@
+@mixin svg-background($size) {
+    background-repeat: no-repeat;
+
+    background-size: contain;
+    background-position: 50% 50%;
+}
+
+@mixin svg-fallback($svgfile, $black-png, $white-png, $grey-png) {
+    $icon-package-prefix: "../packages/material_icons/assets/" !default;
+
+    .no-svg &, .no-svg.fallback-black & {
+            background-image: url(unquote($icon-package-prefix + $black-png));
+        }
+    .no-svg & {
+        &.fallback-black { background-image: url(unquote($icon-package-prefix + $black-png)) !important; }
+    }
+
+    .no-svg.fallback-white & {
+        background-image: url(unquote($icon-package-prefix + $white-png));
+    }
+    .no-svg & {
+        &.fallback-white { background-image: url(unquote($icon-package-prefix + $white-png)) !important; }
+    }
+
+    .no-svg.fallback-grey & {
+        background-image: url(unquote($icon-package-prefix + $grey-png));
+    }
+    .no-svg & {
+        &.fallback-grey { background-image : url(unquote($icon-package-prefix + $grey-png)) !important; }
+    }
+
+    .svg-not-inline & {
+        background-image: url(unquote($icon-package-prefix + $svgfile));
+    }
+}
+

@@ -1,0 +1,3 @@
+@function svg-ic_signal_cellular_2_bar_18px($fillColor) {
+    @return url('data:image/svg+xml;charset=utf-8,' + urlencode('<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path fill-opacity=".3" d="M1 16h15V1z"/><path fill="' + $fillColor + '" d="M1 16h9V7z"/></svg>'));
+}
