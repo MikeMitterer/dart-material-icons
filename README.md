@@ -8,7 +8,6 @@ This project provides this icon-set for Dart.
 Googles original version comes "only" with black or white SVGs.  
 **material_icons** allows you to **theme** your icons!!!  
 Tested with Chrome, Safari, FF + IE.
-IE - needs the no-svg class (see below)  
 
 ![Screenshot][screenshot]
 
