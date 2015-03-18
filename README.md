@@ -86,4 +86,4 @@ or **star** this repo here on GitHub.
 [live]: https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/sass/index.html
 [materialicons]: https://github.com/google/material-design-icons
 [purple]: https://github.com/MikeMitterer/dart-material-icons/tree/master/example/purple
-[screenshot]: https://github.com/MikeMitterer/dart-material-icons/raw/master/lib/assets/screenshot.png?raw=true
+[screenshot]: https://github.com/MikeMitterer/dart-material-icons/raw/master/lib/sass/screenshot.png?raw=true
