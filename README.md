@@ -14,7 +14,7 @@ IE - needs the no-svg class (see below)
 
 ##Usage##
 * Clone the ["purple"][purple] example
-* Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html" target="_blank">[this]</a> page
+* Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/sass/index.html" target="_blank">[this]</a> page
   - Use Chrome or Safari for this!
 * Click on icon that you want to include in your project
 * Copy the **_material-icons.scss** section
@@ -83,7 +83,7 @@ If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.
 or **star** this repo here on GitHub.
       
 [tracker]: https://github.com/MikeMitterer/dart-material-icons/issues
-[live]: https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/assets/index.html
+[live]: https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/sass/index.html
 [materialicons]: https://github.com/google/material-design-icons
 [purple]: https://github.com/MikeMitterer/dart-material-icons/tree/master/example/purple
 [screenshot]: https://github.com/MikeMitterer/dart-material-icons/raw/master/lib/assets/screenshot.png?raw=true
