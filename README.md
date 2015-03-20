@@ -67,7 +67,7 @@ Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-materia
 **fallback-white** | **fallback-black** | **fallback-grey** - PNG color to use  
 This option can also be specified per div (line 3).    
 
-You can (see)[http://wsk.mikemitterer.at/] a [reallife] sample using this technique on (wsk.mikemitterer.at)[http://wsk.mikemitterer.at/] 
+You can [see](http://wsk.mikemitterer.at/) a [reallife] sample using this technique on [wsk.mikemitterer.at](http://wsk.mikemitterer.at/) 
 
 ## Features and bugs
 
