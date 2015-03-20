@@ -13,6 +13,12 @@ Tested with Chrome, Safari, FF + IE.
 
 ##Usage##
 * Clone the ["purple"][purple] example
+  - Your main.scss should look something like this:
+  ```css
+  $icon-color: nth($palette-primary, 2);
+  @import "packages/material_icons/sass/svg-utils";
+  @import "material_icons";
+  ``` 
 * Open <a href="https://rawgit.com/MikeMitterer/dart-material-icons/master/lib/sass/index.html" target="_blank">[this]</a> page
   - Use Chrome or Safari for this!
 * Click on icon that you want to include in your project
@@ -23,7 +29,10 @@ Tested with Chrome, Safari, FF + IE.
 
 .bg-ic_account_box_18px {
     @include svg-background("18");
+    
+    /* you can exclude or delete this line */
     @include svg-fallback("action/svg/production/ic_account_box_18px.svg","action/2x_web/ic_account_box_black_18dp.png","action/2x_web/ic_account_box_white_18dp.png","action/2x_web/ic_account_box_grey600_18dp.png");
+    
     background-image: svg-ic_account_box_18px($icon-color);
 }
 ```
@@ -58,6 +67,8 @@ Your page should look like <a href="https://rawgit.com/MikeMitterer/dart-materia
 **fallback-white** | **fallback-black** | **fallback-grey** - PNG color to use  
 This option can also be specified per div (line 3).    
 
+You can [see][http://wsk.mikemitterer.at/] a [reallife][reallife] sample using this technique on [wsk.mikemitterer.at][http://wsk.mikemitterer.at/] 
+
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
@@ -87,3 +98,4 @@ or **star** this repo here on GitHub.
 [materialicons]: https://github.com/google/material-design-icons
 [purple]: https://github.com/MikeMitterer/dart-material-icons/tree/master/example/purple
 [screenshot]: https://github.com/MikeMitterer/dart-material-icons/raw/master/lib/sass/screenshot.png?raw=true
+[reallife]: https://github.com/MikeMitterer/dart-wsk-material/tree/master/example
