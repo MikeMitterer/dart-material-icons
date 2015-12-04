@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/purple/build" />
-      <excludeFolder url="file://$MODULE_DIR$/example/purple/packages/material_icons" />
+      <excludeFolder url="file://$MODULE_DIR$/example/purple/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/purple/web/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/purple/web/styles/.sass-cache/543e7766f81a5cd4b322448a09909d1fb32f3b3b/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/purple/web/styles/.sass-cache/7402aca87d977dc9b08c134169f29635f383a77d/packages" />
@@ -16,11 +16,12 @@
       <excludeFolder url="file://$MODULE_DIR$/example/purple/web/styles/.sass-cache/e9b639c1da5b9eb9ec11cafb577a0715600dcff6/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/purple/web/styles/.sass-cache/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/purple/web/styles/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/material_icons" />
-      <excludeFolder url="file://$MODULE_DIR$/test/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/tool/packages" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="application" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
 </module>
