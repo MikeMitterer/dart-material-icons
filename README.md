@@ -1,17 +1,17 @@
 # Dart Material SVG Icons
-### Optimized for Dart + SASS###
+### Optimized for Dart + SASS
 
 [Material Design Icons][materialicons] are the official open-source icons featured in the Google Material Design specification.
 This project provides this icon-set for Dart.
  
-##What's cool##
+## What's cool
 Googles original version comes "only" with black or white SVGs.  
 **material_icons** allows you to **theme** your icons!!!  
 Tested with Chrome, Safari, FF + IE.
 
 ![Screenshot][screenshot]
 
-##Usage##
+## Usage
 * Clone the ["purple"][purple] example
   - Your main.scss should look something like this:
   ```css
@@ -73,9 +73,9 @@ You can [see](http://wsk.mikemitterer.at/) a [reallife] sample using this techni
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-###License###
+### License
 
-    Copyright 2015 Michael Mitterer (office@mikemitterer.at),
+    Copyright 2016 Michael Mitterer (office@mikemitterer.at),
     IT-Consulting and Development Limited, Austrian Branch
 
     Licensed under the Apache License, Version 2.0 (the "License");
