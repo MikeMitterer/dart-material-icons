@@ -1,6 +1,11 @@
 # Change Log for material_icons
 Google Material icons - optimized for Dart + SASS
 
+## [v1.0.4](http://github.com/mikemitterer/dart-material-icons/compare/v1.0.3...v1.0.4) - 2016-11-16
+
+### Docs
+* Strong-Mode support [35d7228](https://github.com/mikemitterer/dart-material-icons/commit/35d7228428cb7882c0c86e81dec98de2fd28b4e3)
+
 ## [v1.0.3](http://github.com/mikemitterer/dart-material-icons/compare/v1.0.2...v1.0.3) - 2015-12-04
 
 ### Docs
